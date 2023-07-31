@@ -4,20 +4,17 @@ import 'navbar.dart';
 import 'dashboard.dart';
 import 'booking.dart';
 import 'changepassword.dart';
-import 'adduser.dart';
-import 'resetpassword.dart';
-import 'changeuserrole.dart';
 import 'logout.dart';
 
 void main() {
-  runApp(Home());
+  runApp(User());
 }
 
-class Home extends StatefulWidget {
+class User extends StatefulWidget {
   @override
-  HomeState createState() => HomeState();
+  UserState createState() => UserState();
 }
-class HomeState extends State<Home> {
+class UserState extends State<User> {
   var currentPage = NavSection.dashboard;
 
   @override
@@ -29,32 +26,26 @@ class HomeState extends State<Home> {
       container= Booking();
     }else if(currentPage==NavSection.changepassword){
       container=  ChangePassword();
-    }else if(currentPage==NavSection.adduser){
-      container= const AddUser();
-    }else if(currentPage==NavSection.resetpassword){
-      container=ResetPassword();
-    }else if(currentPage==NavSection.changeuserrole){
-      container=ChangeUserRole();
     }else if(currentPage==NavSection.logout) {
       container = Logout();
     }
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.green[700],
-          title: Text('FC AVAILABILITY SYSTEM'),
-        ),
-body: container,
+      appBar: AppBar(
+        backgroundColor: Colors.green[700],
+        title: Text('FC AVAILABILITY SYSTEM'),
+      ),
+      body: container,
       drawer:
-        Drawer(
-          child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  // NavHeader(),
-                  NavList(),
-                ],
-              ),
+      Drawer(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // NavHeader(),
+              NavList(),
+            ],
           ),
         ),
+      ),
 
     );
   }
@@ -89,21 +80,9 @@ body: container,
           SizedBox(
             height: 15,
           ),
-          menuItem(4,'Add User',Icons.verified_user,
-              currentPage==NavSection.adduser? true:false),
-          Divider(),
           SizedBox(
             height: 15,
           ),
-          menuItem(5,'Reset password',Icons.lock_reset,
-              currentPage==NavSection.resetpassword? true:false),
-          Divider(),
-          SizedBox(
-            height: 15,
-          ),
-          menuItem(6,'Change User Role',Icons.change_circle,
-              currentPage==NavSection.changeuserrole? true:false),
-          Divider(),
           SizedBox(
             height: 50,
           ),
@@ -132,15 +111,6 @@ body: container,
             }
             else if(id==3){
               currentPage=NavSection.changepassword;
-            }
-            else if(id==4){
-              currentPage=NavSection.adduser;
-            }
-            else if(id==5){
-              currentPage=NavSection.resetpassword;
-            }
-            else if(id==6){
-              currentPage=NavSection.changeuserrole;
             }
             else if(id==7){
               currentPage=NavSection.logout;
@@ -178,8 +148,5 @@ enum NavSection{
   dashboard,
   booking,
   changepassword,
-  adduser,
-  resetpassword,
-  changeuserrole,
   logout
 }
